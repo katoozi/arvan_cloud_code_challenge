@@ -4,24 +4,10 @@ import (
 	"encoding/json"
 	"net/http"
 	"strconv"
-	"sync"
 	"time"
 
 	"github.com/katoozi/avran_cloud_code_challenge_wallet_service/internal/ports"
 )
-
-// Service is the wallet service structure
-type Service struct {
-	wallets         sync.Map
-	persistantLayer ports.PersistantLayer
-}
-
-// New is the wallet service factory method
-func New(persistantLayer ports.PersistantLayer) *Service {
-	return &Service{
-		persistantLayer: persistantLayer,
-	}
-}
 
 // TransactionHandler will inject dependencies and return the redeem http handler
 func TransactionHandler(persistantLayer ports.PersistantLayer) http.HandlerFunc {
